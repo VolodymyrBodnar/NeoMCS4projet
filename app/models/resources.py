@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship,validates
-from database import Base
+from ..database import Base
+from .booking import Booking
 
 class Resource(Base):
     __tablename__ = 'resources'
@@ -9,7 +10,7 @@ class Resource(Base):
     name = Column(String, nullable=False)
     description = Column(String, nullable=True)
 
-    bookings = relationship("Booking", back_populates="resource")
+    bookings = relationship(Booking, back_populates="resource")
 
     @validates('description')
     def validate_description(self, key, value):

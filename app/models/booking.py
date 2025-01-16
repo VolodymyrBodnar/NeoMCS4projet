@@ -1,8 +1,12 @@
 from sqlalchemy import Column, Integer, ForeignKey, DateTime, event
 from sqlalchemy.orm import relationship, validates
 from datetime import datetime
-from database import Base
 
+
+from ..database import Base
+
+from .users import User
+# from .resources import Resource
 class Booking(Base):
     __tablename__ = 'bookings'
 
@@ -14,7 +18,7 @@ class Booking(Base):
     created_at = Column(DateTime, default=datetime.now)
     updated_at = Column(DateTime, default=datetime.now)
 
-    user = relationship("User", back_populates="bookings")
+    user = relationship(User, back_populates="bookings")
     resource = relationship("Resource", back_populates="bookings")
 
     @validates('start_time', 'end_time')
