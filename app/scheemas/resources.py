@@ -1,13 +1,11 @@
-
 from typing import Optional
 
 from pydantic import BaseModel
 
 
-    # id = Column(Integer, primary_key=True, index=True)
-    # name = Column(String, nullable=False)
-    # description = Column(String, nullable=True)
-
+# id = Column(Integer, primary_key=True, index=True)
+# name = Column(String, nullable=False)
+# description = Column(String, nullable=True)
 
 
 class ResourceCreate(BaseModel):

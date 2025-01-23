@@ -8,4 +8,4 @@ router = APIRouter()
 
 @router.get("/booking/{booking_id}")
 def retriewe_booking(booking_id: int) -> BookingDetail:
-    return get_booking(booking_id)    
+    return get_booking(booking_id)

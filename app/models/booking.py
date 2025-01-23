@@ -6,9 +6,11 @@ from datetime import datetime
 from ..database import Base
 
 from .users import User
+
+
 # from .resources import Resource
 class Booking(Base):
-    __tablename__ = 'bookings'
+    __tablename__ = "bookings"
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -21,10 +23,8 @@ class Booking(Base):
     user = relationship(User, back_populates="bookings")
     resource = relationship("Resource", back_populates="bookings")
 
-    @validates('start_time', 'end_time')
+    @validates("start_time", "end_time")
     def validate_time(self, key, value):
-        if key == 'end_time' and self.start_time and value <= self.start_time:
+        if key == "end_time" and self.start_time and value <= self.start_time:
             raise ValueError("End time must be after start time")
         return value
-    
-

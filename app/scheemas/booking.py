@@ -3,6 +3,7 @@ from datetime import datetime
 from .resources import ResourceDetail
 from .user import UserDetail
 
+
 class BookingCreate(BaseModel):
     user_id: int
     resource_id: int
@@ -17,6 +18,3 @@ class BookingDetail(BaseModel):
     end_time: datetime
     created_at: datetime
     updated_at: datetime
-
-    
-    
