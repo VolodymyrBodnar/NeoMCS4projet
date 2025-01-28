@@ -18,8 +18,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-HOST_EMAIL = os.getenv("HOST_EMAIL")
-APP_PASS = os.getenv("APP_PASS")
+HOST_EMAIL = os.getenv('HOST_EMAIL')
+APP_PASS = os.getenv('APP_PASS')
 
 router = APIRouter()
 
@@ -57,17 +57,16 @@ def set_role(user_data: AuthenticatedUser):
     update_user_role(user_data)
     return 200
 
-
 def send_virification_email(email):
     otp = str(uuid4())
     msg = MIMEMultipart()
-    msg["From"] = HOST_EMAIL
-    msg["To"] = email
-    msg["Subject"] = "simple email in python"
-    message = f"Your OTP IS: {otp}"
+    msg['From'] = HOST_EMAIL
+    msg['To'] = email
+    msg['Subject'] = 'simple email in python'
+    message = f'Your OTP IS: {otp}'
     msg.attach(MIMEText(message))
 
-    mailserver = smtplib.SMTP("smtp.gmail.com", 587)
+    mailserver = smtplib.SMTP('smtp.gmail.com',587)
     # identify ourselves to smtp gmail client
     mailserver.ehlo()
     # secure our email with tls encryption
@@ -76,6 +75,7 @@ def send_virification_email(email):
     mailserver.ehlo()
     mailserver.login(HOST_EMAIL, APP_PASS)
 
-    mailserver.sendmail(HOST_EMAIL, email, msg.as_string())
+    mailserver.sendmail(HOST_EMAIL,email,msg.as_string())
 
     mailserver.quit()
+    

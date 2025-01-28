@@ -53,7 +53,7 @@ def get_current_user_name(
     return AuthenticatedUser(role=role, name=username)
 
 
-async def validate_is_admin_user(
+def validate_is_admin_user(
     user: AuthenticatedUser = Depends(get_current_user_name),
 ) -> None:
     """
@@ -65,7 +65,7 @@ async def validate_is_admin_user(
     return user
 
 
-async def validate_is_manager(
+def validate_is_manager(
     user: AuthenticatedUser = Depends(get_current_user_name),
 ) -> None:
     """
@@ -77,7 +77,7 @@ async def validate_is_manager(
     return user
 
 
-async def validate_is_employee(
+def validate_is_employee(
     user: AuthenticatedUser = Depends(get_current_user_name),
 ) -> None:
     """
