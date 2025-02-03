@@ -12,6 +12,8 @@ import hashlib
 
 def salted_hash(data: str):
     password = data + "secret_part"
+    # we use hashlib.sha256 insteadof built in hash cause builtin yileds differet results
+    # TODO use different algo
     return hashlib.sha256(password.encode()).hexdigest()
 
 
@@ -25,6 +27,14 @@ def get_user(user_id: int, db: Any) -> UserDetail:
 
 
 def authenticate_user(user: UserAuth):
+    """
+    Function to authenticate user with password, check if password is correct.
+
+    Args:
+        user(UserAuth): user data with pass
+    Returns:
+        user_from_db: data of authenticated user    
+    """
     name = user.name
     password = user.password
     user_from_db = get_user_from_db_by_name(name)

@@ -25,7 +25,16 @@ router = APIRouter()
 
 
 @router.post("/login/")
-def read_items(user: UserAuth):
+def login(user: UserAuth):
+    """
+    API call for login user
+    Attributes:
+        user (UserAuth): user data i pydantic DTO
+    Returns:
+        token: JWT toke for auth
+    Raises:
+        HTTPException
+    """
     authenticated_user = authenticate_user(user)
     if authenticated_user is not None:
         token = create_access_token(
